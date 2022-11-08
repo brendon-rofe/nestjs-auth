@@ -36,4 +36,9 @@ export class UserService {
     await this.userRepository.softDelete(id);
   }
 
+  async restoreUser(id: number) {
+    const restoredUserResponse = await this.userRepository.restore(id);
+    return restoredUserResponse;
+  }
+
 }

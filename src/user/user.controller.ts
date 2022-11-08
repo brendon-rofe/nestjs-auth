@@ -35,4 +35,9 @@ export class UserController {
     return this.userService.deleteUser(id);
   }
 
+  @Post(':id')
+  restoreUser(@Param('id', new ParseIntPipe()) id: number) {
+    return this.userService.restoreUser(id);
+  }
+
 }
