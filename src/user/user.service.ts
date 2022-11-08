@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { FindOneOptions, Repository } from "typeorm";
+import { FindOneOptions, Repository, UpdateResult } from "typeorm";
 import { User } from "./user.entity";
 import { UserUpdate } from "./update-user.dto";
 
@@ -30,6 +30,10 @@ export class UserService {
     const user = await this.userRepository.findOneBy({ id });
     this.userRepository.merge(user, update);
     return this.userRepository.save(user);
+  }
+
+  async deleteUser(id: number): Promise<void> {
+    await this.userRepository.softDelete(id);
   }
 
 }
